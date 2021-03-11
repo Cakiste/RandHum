@@ -52,6 +52,7 @@ flutter:
     - assets/Body/
     - assets/Head/Front/
     - assets/Bottom/Standing/
+    - assets/Bottom/Sitting/
     - assets/Scene/
 
   # An image asset can refer to one or more resolution-specific "variants", see

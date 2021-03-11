@@ -33,6 +33,12 @@ const List<String> Bottom = [
   "Sprint",
   "Sweatpants"
 ];
+const List<String> BottomSit = [
+  "Baggy Pants",
+  "Skinny Jeans 1",
+  "Sweat Pants",
+  "Wheelchair"
+];
 const List<String> Body = [
   "Hoodie",
   "Jacket 2",
@@ -53,7 +59,9 @@ Random r = Random();
 int head = r.nextInt(Head.length);
 int body = r.nextInt(Body.length);
 int bottom = r.nextInt(Bottom.length);
+int bottomsit = r.nextInt(BottomSit.length);
 int scene = r.nextInt(Scene.length);
+bool stand = r.nextBool();
 
 class MyApp extends StatelessWidget {
   @override
@@ -82,7 +90,9 @@ class _MyHomePageState extends State<MyHomePage> {
     head = r.nextInt(Head.length);
     body = r.nextInt(Body.length);
     bottom = r.nextInt(Bottom.length);
+    bottomsit = r.nextInt(BottomSit.length);
     scene = r.nextInt(Scene.length);
+    stand = r.nextBool();
     setState(() {});
   }
 
@@ -90,6 +100,12 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
+    String sbot;
+    if (stand) {
+      sbot = "Standing/" + Bottom[bottom];
+    } else {
+      sbot = "Sitting/" + BottomSit[bottomsit];
+    }
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -115,16 +131,15 @@ class _MyHomePageState extends State<MyHomePage> {
             child: Image.asset('assets/Scene/' + Scene[scene] + '.png')),
         Positioned(
             left: 94,
-            top: 63,
+            top: 43,
             child: Image.asset('assets/Head/Front/' + Head[head] + '.png')),
         Positioned(
             left: 13,
-            top: 263,
-            child: Image.asset(
-                'assets/Bottom/Standing/' + Bottom[bottom] + '.png')),
+            top: 243,
+            child: Image.asset('assets/Bottom/' + sbot + '.png')),
         Positioned(
             left: 32,
-            top: 155,
+            top: 135,
             child: Image.asset('assets/Body/' + Body[body] + '.png')),
         Positioned(
             bottom: 60,
@@ -135,7 +150,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 textAlign: TextAlign.center,
               ),
               Text(
-                '(1152 possibilities)',
+                '(1536 possibilities)',
                 textAlign: TextAlign.center,
               ),
             ]))
